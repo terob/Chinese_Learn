@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+    <script  src="data.js"></script>
+      <meta http-equiv="Content-Security-Policy" 
+            content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; 
+            style-src 'self' 'unsafe-inline'; 
+            media-src *; 
+            script-src 'self' 'unsafe-inline';
+            img-src 'self' data: content:;">   
+    <title>Read JSON Demo</title>
+</head>
+
+<body>
+
+
+<script>
+
+function main(data){
+// String Json
+//data = '{"chinese": [{"id": 1, "character": "\u6211", "pinay": "wǒ", "meaning": "I, me", "test": ["question", "question", "question"]}, {"id": 2, "character": "\u4f60", "pinay": "wǒmen", "meaning": "we, us", "test": ["incorrect", "question", "question"]}]}'
+
+//2) Get all rows
+
+obj = data["chinese"];
+
+// count elements
+count = obj.length
+document.write("counted elements: " + count + "<br>");
+
+// Get Status
+function get_status(obj1, obj2, obj3) {
+  status = "question";
+    // question incorrect correct
+    // question, question, question -> question
+    // question, incorrect, correct -> incorrect
+    // correct, question, question -> correct
+
+  if (obj1 == "correct" ) {
+    if (obj2 != "incorrect" && obj3 != "incorrect"){
+      if (obj2 != "incorrect" || obj3 != "incorrect"){
+        status = "correct"
+      }
+    }
+  }
+
+  if (obj2 == "correct" ) {
+    if (obj1 != "incorrect" && obj3 != "incorrect"){
+      if (obj1 != "incorrect" || obj3 != "incorrect"){
+        status = "correct"
+      }
+    }
+  }
+
+  if (obj3 == "correct" ) {
+    if (obj1 != "incorrect" && obj2 != "incorrect"){
+      if (obj1 != "incorrect" || obj2 != "incorrect"){
+        status = "correct"
+      }
+    }
+  }
+
+  if (obj1 == "incorrect" && obj2 == "incorrect" && obj3 == "incorrect"){status = "incorrect"}
+  if (obj1 == "incorrect" || obj2 == "incorrect" || obj3 == "incorrect"){status = "incorrect"}
+
+  return status;
+
+}
+
+//Iterate througt elements
+
+function get_all_rows(obj){
+  var i = 0;
+  while (i < count) {
+    _id = obj[i]["Id"];
+    character = obj[i]["Chinese"];
+    pinay = obj[i]["Pinyin"];
+    meaning = obj[i]["English"];
+    test = obj[i]["Test"];
+
+    status = get_status(test[0], test[1], test[2]);
+
+    output = '<b>id:</b> ' + _id + " <b>character:</b> " + character + " <b>pinay:</b> " + pinay + " <b>meaning:</b> " + meaning
+    + " <b>test1:</b> " + test[0] + " <b>test2:</b> " + test[1] + " <b>test3:</b> " + test[2] + " <b>status:</b> " + status + "<br>";
+    document.write(output);
+
+    i++;
+  }
+}
+
+// 3) Edit one characte in test
+test = obj[0]["Test"];
+test[0] = "correct";
+test[1] = "question";
+test[2] = "question";
+
+get_all_rows(obj)
+}
+
+main(obj_chinese);
+
+</script>
+
+</body>
+</html>

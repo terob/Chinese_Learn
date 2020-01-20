@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+<style>
+a.disabled {
+  /* Make the disabled links grayish*/
+  color: gray;
+  /* And disable the pointer events */
+  pointer-events: none;
+}
+</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" 
+            content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; 
+            style-src 'self' 'unsafe-inline'; 
+            media-src *; 
+            script-src 'self' 'unsafe-inline';
+            img-src 'self' data: content:;">
+  <title>Index</title>
+  <link rel='stylesheet' href='./css/bootstrap.min.css'>
+  <link rel="stylesheet" href="./css/sidebarNavigation.css">
+  <script  src="data.js"></script>
+  <link href="./styles/monokai-sublime.css" rel="stylesheet">
+  <link href="./css/all.css" rel="stylesheet"> <!--load all styles -->
+  <script src="./js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse sidebarNavigation" data-sidebarClass="navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle left-navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Chinese Learn</a>
+    </div>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active-no"><a href="index.html">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="learning.html"><i class="fab fa-leanpub"></i> Learning</a></li>
+        <li><a href="results.html"><i class="fas fa-marker"></i> Results</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script src='./js/jquery.min.js'></script>
+<script src='./js/bootstrap.min.js'></script>
+<script  src="./js/sidebarNavigation.js"></script>
+
+<div class="container-fluid panel-body text-left">
+  <div class="home text-center">
+    <h3>Speech:</h3>
+  </div>
+
+<script type="text/javascript">
+
+function chear(id){
+
+alert("chear: " +id);
+
+}
+
+function speek(id){
+
+alert("speek: " +id);
+
+}
+
+</script>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><font size="6" id="panel">The Text to Speetch</font></div>
+  <div class="panel-body">
+    <div class="voiceinator">
+
+      <p>
+      <select name="voice" id="voices">
+        <option value="">Select A Voice</option>
+      </select>
+      </p>
+
+      <p><label for="rate">Rate:</label></p>
+      <p><input name="rate" type="range" min="0" max="3" value="1" step="0.1"></p>
+
+      <p><label for="pitch">Pitch:</label></p>
+
+      <p><input name="pitch" type="range" min="0" max="2" step="0.1"></p>
+      <textarea name="text">Hello! I love JavaScript 👍</textarea>
+      <button id="stop">Stop!</button>
+      <button id="speak">Speak</button>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading"><font size="6" id="panel">1: 我</font></div>
+  <div class="panel-body">
+  <p>
+    <button type = "button" id="button_chear" class = "btn btn-primary" onclick="chear(1)"><i class="fas fa-volume-up"></i></span> Chear</button>
+    <button type = "button" id="button_speek" class = "btn btn-primary" onclick="speek(1)"><span class="glyphicon glyphicon-bullhorn"></span> Speek</button>
+  </p>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><font size="6" id="panel">1: 我</font></div>
+  <div class="panel-body">
+  <p>
+    <button type = "button" id="button_chear" class = "btn btn-primary" onclick="chear(1)"><i class="fas fa-volume-up"></i></span> Chear</button>
+    <button type = "button" id="button_speek" class = "btn btn-primary" onclick="speek(1)"><span class="glyphicon glyphicon-bullhorn"></span> Speek</button>
+  </p>
+  </div>
+</div>
+<script type="text/javascript">
+
+  const msg = new SpeechSynthesisUtterance();
+  let voices = [];
+  const voicesDropdown = document.querySelector('[name="voice"]');
+  const options = document.querySelectorAll('[type="range"], [name="text"]');
+  const speakButton = document.querySelector('#speak');
+  const stopButton = document.querySelector('#stop');
+  msg.text = document.querySelector('[name="text"]').value;
+
+  function populateVoices() {
+    voices = this.getVoices();
+    voicesDropdown.innerHTML = voices
+      .filter(voice => voice.lang.includes('zh'))
+      .map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`)
+      .join('');
+  }
+
+  function setVoice() {
+    msg.voice = voices.find(voice => voice.name === this.value);
+    console.log(this.value);
+    toggle();
+  }
+
+  function toggle(startOver = true) {
+    speechSynthesis.cancel();
+    if (startOver) {
+      speechSynthesis.speak(msg);
+    }
+  }
+
+  function setOption() {
+    console.log(this.name, this.value);
+    msg[this.name] = this.value;
+    toggle();
+  }
+
+  speechSynthesis.addEventListener('voiceschanged', populateVoices);
+  voicesDropdown.addEventListener('change', setVoice);
+  options.forEach(option => option.addEventListener('change', setOption));
+  speakButton.addEventListener('click', toggle);
+  stopButton.addEventListener('click', () => toggle(false));
+</script>
+
+</div>
+</body>
+
+</html>

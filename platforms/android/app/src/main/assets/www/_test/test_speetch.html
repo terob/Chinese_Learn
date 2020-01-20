@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<Title>Text To Speech</title>
+</head>
+<body>
+
+<input type="text" name="Text">
+<a href="#" class="say">Say It</a>
+
+<audio src="" class="speech" hidden></audio>
+
+
+
+<script>
+function say(m) {
+  var msg = new SpeechSynthesisUtterance();
+  var voices = window.speechSynthesis.getVoices();
+  msg.voice = voices[10];
+  msg.voiceURI = "native";
+  msg.volume = 1;
+  msg.rate = 1;
+  msg.pitch = 0.8;
+  msg.text = m;
+  msg.lang = 'zh-CN';
+  speechSynthesis.speak(msg);
+}
+
+</script>
+
+<button type = "button" id="button_ok" class = "btn btn-primary" onclick="say('我');">Ok</button>
+            
+
+</body>
+</html>

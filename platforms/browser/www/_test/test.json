@@ -1,0 +1,6 @@
+{"chinese": 
+	[
+		{"id": 1, "character": "\u6211", "pinay": "wǒ", "meaning": "I, me", "test": ["question", "question", "question"]}, 
+		{"id": 2, "character": "b", "pinay": "wǒmen", "meaning": "we, us", "test": ["incorrect", "question", "question"]}
+	]
+}

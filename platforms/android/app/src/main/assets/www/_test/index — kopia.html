@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+a.disabled {
+  /* Make the disabled links grayish*/
+  color: gray;
+  /* And disable the pointer events */
+  pointer-events: none;
+}
+</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script  src="data.js"></script>
+  <meta http-equiv="Content-Security-Policy" 
+            content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; 
+            style-src 'self' 'unsafe-inline'; 
+            media-src *; 
+            script-src 'self' 'unsafe-inline';
+            img-src 'self' data: content:;">
+  <title>Index</title>
+  <link rel='stylesheet' href='./css/bootstrap.min.css'>
+  <link rel="stylesheet" href="./css/sidebarNavigation.css">
+  <script  src="cordova.js"></script>
+  <link href="./styles/monokai-sublime.css" rel="stylesheet">
+  <link href="./css/all.css" rel="stylesheet"> <!--load all styles -->
+  <script src="./js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse sidebarNavigation" data-sidebarClass="navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle left-navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Chinese Learn</a>
+    </div>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active-no"><a href="index.html">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="learning.html"><i class="fab fa-leanpub"></i> Learning</a></li>
+        <li><a href="results.html"><i class="fas fa-marker"></i> Results</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script src='./js/jquery.min.js'></script>
+<script src='./js/bootstrap.min.js'></script>
+<script  src="./js/sidebarNavigation.js"></script>
+
+<script type="text/javascript">
+// *Home
+function index_home(){
+
+html_home_start = `
+<div class="container-fluid panel-body text-center">
+  <div class="home">
+    <h3>Home:</h3>
+  </div>
+`;  
+
+html_home_end = `
+</div>
+`;  
+
+html_home_middle = `
+<div class="panel panel-info">
+  <div class="panel-heading">Chinese Language: <b><span id="model"></span></b></div>
+  <div class="panel-body" class="text-left">
+    <ul class="text-left">
+    <li>Mandarin Chinese is the most popular language in China, with over 955 million speakers out of China’s total population of 1.21 billion people.</li>
+    <li>Another language that has official status in China is Cantonese is used as the official language in Hong Kong and Macau</li>
+    <li>Cantonese has about 80 million speakers across the country</li>
+    <li>In Hong Kong, English is established as an official language and is used in both print and electronic media</li>
+    <li>Another major international language in China is Portuguese, which is used as the official language in Macau</li>
+    </ul>
+  </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">Chinese characters: <b><span id="model"></span></b></div>
+  <div class="panel-body" class="text-left">
+    <ul class="text-left">
+    <li>Traditional Chinese characters are used in Hong Kong, Macau, and the Republic of China (Taiwan).</li>
+    <li>The traditional characters can still be read and understood by many mainland Chinese</li>
+    <li>Overseas Chinese communities generally tend to use traditional characters</li>
+    </ul>
+  </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">HSK: <b><span id="model"></span></b></div>
+  <div class="panel-body" class="text-left">
+    <ul class="text-left">
+    <li>Chinese Proficiency Test (HSK), an international standardized test of Chinese language proficiency,assesses non-native Chinese speakers’ abilities in using the Chinese language in their daily, academic and professional lives.</li>
+    <li>HSK 1: 150 words</li>
+    <li>HSK 2: 150 words</li>
+    <li>HSK 3: 300 words</li>
+    <li>HSK 4: 600 words</li>
+    <li>HSK 5: 1300 words</li>
+    <li>HSK 6: 2500 words</li>
+    <li>HSK 1 - 4: 1200 words</li>
+    <li>HSK 1 - 6: 5000 words</li>
+    </ul>
+  </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">Pinyin: <b><span id="model"></span></b></div>
+  <div class="panel-body" class="text-left">
+    <ul class="text-left">
+    <li>Pinyin is the official romanization system for Standard Chinese in mainland China and to some extent in Taiwan</li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">Success Story: <b><span id="model"></span></b></div>
+  <div class="panel-body" class="text-left">
+    <video width="320" height="240" controls>
+      <source src="./media/Speaking_Chinese.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+`;  
+
+html_home = html_home_start;
+html_home = html_home + html_home_middle;
+html_home = html_home + html_home_end;
+
+
+return html_home;
+}
+</script>
+
+
+
+<script type="text/javascript">
+// *Result
+function index_result(data){
+html_results_start = `
+<div class="container-fluid panel-body text-left">
+  <div class="home text-center">
+    <h3>Results:</h3>
+  </div>
+`;  
+
+html_results_end = `
+</div>
+`;  
+
+html_results = html_results_start;
+
+//2) Get all rows
+
+obj = data["chinese"];
+
+// count elements
+count = obj.length
+//document.write("counted elements: " + count + "<br>");
+
+// Get Status
+function get_status(obj1, obj2, obj3) {
+  status = "question";
+    // question incorrect correct
+    // question, question, question -> question
+    // question, incorrect, correct -> incorrect
+    // correct, question, question -> correct
+
+  if (obj1 == "correct" ) {
+    if (obj2 != "incorrect" && obj3 != "incorrect"){
+      if (obj2 != "incorrect" || obj3 != "incorrect"){
+        status = "correct"
+      }
+    }
+  }
+
+  if (obj2 == "correct" ) {
+    if (obj1 != "incorrect" && obj3 != "incorrect"){
+      if (obj1 != "incorrect" || obj3 != "incorrect"){
+        status = "correct"
+      }
+    }
+  }
+
+  if (obj3 == "correct" ) {
+    if (obj1 != "incorrect" && obj2 != "incorrect"){
+      if (obj1 != "incorrect" || obj2 != "incorrect"){
+        status = "correct"
+      }
+    }
+  }
+
+  if (obj1 == "incorrect" && obj2 == "incorrect" && obj3 == "incorrect"){status = "incorrect"}
+  if (obj1 == "incorrect" || obj2 == "incorrect" || obj3 == "incorrect"){status = "incorrect"}
+
+  return status;
+
+}
+
+//Iterate througt elements
+
+function get_all_rows(obj){
+  var i = 0;
+  while (i < count) {
+    _id = obj[i]["Id"];
+    character = obj[i]["Chinese"];
+    pinay = obj[i]["Pinyin"];
+    meaning = obj[i]["English"];
+    test = obj[i]["Test"];
+
+    status = get_status(test[0], test[1], test[2]);
+
+    var output = `
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#playlist_${_id}">
+        <font size="10"><img src="./img/${status}.png" width="30"></a> <b>${_id}: ${character}</font></b>
+      </h4>
+    </div>
+  <div id="playlist_${_id}" class="panel-collapse collapse">
+    <div class="panel-body">
+      <div class="container">
+    <p><img src="./img/${status}.png" width="12"></a> <b>Character:</b> ${character}</p>
+    <p><img src="./img/${status}.png" width="12"></a> <b>Pinay:</b> ${pinay}</p>
+    <p><img src="./img/${status}.png" width="12"></a> <b>Meaning:</b> ${meaning}</p>
+    </div>
+      </div>
+  </div>
+</div>
+`;
+
+    html_results = html_results + output;
+    i++;
+    //if (i == 3){break}
+  }
+
+html_results = html_results + html_results_end;
+
+}
+
+get_all_rows(obj)
+return html_results;
+}  
+
+
+</script>
+
+<script type="text/javascript">
+// *Quiz
+
+function index_quiz(test_ask, test_show, id){
+  alert("test_ask: " + test_ask);
+  alert("test_show: " + test_show);
+  alert("id: " + id);
+}
+
+</script>
+
+
+<script type="text/javascript">
+// *Learning
+
+function learning(){
+  // test_ask
+  if (document.getElementById('ask_r1').checked) {
+    test_ask = document.getElementById('ask_r1').value;
+  }
+  else if (document.getElementById('ask_r2').checked) {
+    test_ask = document.getElementById('ask_r2').value;
+  }
+  else {
+    test_ask = document.getElementById('ask_r3').value;
+  }
+
+  // test_show
+  if (document.getElementById('show_r1').checked) {
+    test_show = document.getElementById('show_r1').value;
+  }
+  else if (document.getElementById('show_r2').checked) {
+    test_show = document.getElementById('show_r2').value;
+  }
+  else {
+    test_show = document.getElementById('show_r3').value;
+  }
+
+  index_quiz(test_ask, test_show, 1);
+
+}
+
+function index_learning(){
+
+html_learning_start = `
+<div class="container-fluid panel-body text-center">
+  <div class="home">
+    <h3>Learning:</h3>
+  </div>
+`;  
+
+html_learning_end = `
+</div>
+`;  
+
+
+html_learning_middle = `
+<div class="panel panel-default">
+  <div class="panel-heading">Ask for:</div>
+  <div class="panel-body text-left">
+    <input type="radio" name="test_ask" id="ask_r1" value="Character" checked="checked"> Character<br>
+    <input type="radio" name="test_ask" id="ask_r2" value="Pinay"> Pinay<br>
+    <input type="radio" name="test_ask" id="ask_r3" value="Meaning"> Meaning<br>
+  </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Show:</div>
+  <div class="panel-body text-left">
+    <input type="radio" name="test_show" id="show_r1" value="Character" checked="checked"> Character<br>
+    <input type="radio" name="test_show" id="show_r2" value="Pinay"> Pinay<br>
+    <input type="radio" name="test_show" id="show_r3" value="Meaning"> Meaning<br>
+  </div>
+</div>
+
+<p class="text-left">1 - 1056</p>
+<p class="text-left">Start at: <input type="text" name="start" id="star" value="1" size="3"></p>
+
+
+<div class="navbar navbar-fixed-bottom">
+  <p><button type="button" class="btn btn-primary" onclick="learning()">Submit</button></p>
+</div>
+`; 
+
+html_learning = html_learning_start;
+html_learning = html_learning + html_learning_middle;
+html_learning = html_learning + html_learning_end;
+
+return html_learning;
+}
+
+</script>
+
+
+<div id="content"></div>
+
+
+
+<script type="text/javascript">
+//results = index_result(obj_chinese);  
+//results = index_home();
+results = index_learning();
+</script>
+
+<script type="text/javascript">document.getElementById("content").innerHTML = results;</script>
+</body>
+</html>
