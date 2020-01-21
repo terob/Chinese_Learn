@@ -246,14 +246,14 @@ html_quiz = `
 <div id="show_div"></div>
 
 <p><button type = "button" id="button_ok" class = "btn btn-primary">Ok</button></p>
-
+<br><br>
 <div id="success_faill"></div>
 
-<div class="navbar navbar-fixed-bottom">
-  <button type = "button" id="button_previaous" class = "btn btn-primary"><span class="glyphicon glyphicon-triangle-left"></span>Previaous</button>
-  <button type = "button" id="button_random" class = "btn btn-warning"><i class="fas fa-random"></i> Random</button>
-  <button type = "button" id="button_next" class = "btn btn-primary"><span class="glyphicon glyphicon-triangle-right"></span>Next</button>  
-</div>
+
+<button type = "button" id="button_previaous" class = "btn btn-primary"><span class="glyphicon glyphicon-triangle-left"></span>Previaous</button>
+<button type = "button" id="button_random" class = "btn btn-warning"><i class="fas fa-random"></i> Random</button>
+<button type = "button" id="button_next" class = "btn btn-primary"><span class="glyphicon glyphicon-triangle-right"></span>Next</button>  
+
 `;
 
   document.getElementById("content").innerHTML = html_quiz;
@@ -735,10 +735,10 @@ html_learning_middle = `
 <p class="text-left">1 - 1056</p>
 <p class="text-left">Start at: <input type="text" name="start" id="start" value="1" size="3"></p>
 
-
 <div class="navbar navbar-fixed-bottom">
-  <p><button type="button" class="btn btn-primary" onclick="learning()">Submit</button></p>
+<p><button type="button" class="btn btn-primary" onclick="learning()">Submit</button></p>
 </div>
+
 `; 
 
 html_learning = html_learning_start;
